@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { Inter, Outfit, Fira_Code } from "next/font/google";
+import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import ThemeProvider from "@/components/ThemeProvider";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -10,35 +10,34 @@ const inter = Inter({
   display: "swap",
 });
 
-const outfit = Outfit({
+const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
-  variable: "--font-outfit",
+  variable: "--font-space-grotesk",
   display: "swap",
 });
 
-const firaCode = Fira_Code({
+const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
-  variable: "--font-fira-code",
+  variable: "--font-jetbrains-mono",
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Ankur Gupta | Portfolio",
+  title: "Ankur Gupta — Developer",
   description:
-    "Data Analytics & Software Development enthusiast. I build data-driven applications and scalable web solutions.",
+    "Full Stack Developer and Data Science enthusiast. Building real-world projects, data-driven systems, and modern web applications.",
   keywords: [
     "Ankur Gupta",
+    "Developer",
+    "Full Stack",
+    "Data Science",
     "Portfolio",
-    "Data Analytics",
-    "Software Developer",
-    "Python",
-    "Web Development",
   ],
   authors: [{ name: "Ankur Gupta" }],
   openGraph: {
-    title: "Ankur Gupta | Portfolio",
+    title: "Ankur Gupta — Developer",
     description:
-      "Data Analytics & Software Development enthusiast. I build data-driven applications and scalable web solutions.",
+      "Full Stack Developer and Data Science enthusiast building modern web applications.",
     type: "website",
   },
 };
@@ -51,12 +50,11 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
       <body
-        className={`${inter.variable} ${outfit.variable} ${firaCode.variable} font-sans antialiased bg-navy-900 text-navy-100`}
+        className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} font-sans`}
       >
-        <ThemeProvider>
-          <Navbar />
-          <main>{children}</main>
-        </ThemeProvider>
+        <Navbar />
+        <main className="min-h-screen">{children}</main>
+        <Footer />
       </body>
     </html>
   );

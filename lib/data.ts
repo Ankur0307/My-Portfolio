@@ -1,20 +1,25 @@
-// ─── Types ───────────────────────────────────────────────────────────────
+// ─── Types ───────────────────────────────────────────────────────
 
 export interface Project {
   title: string;
-  subtitle?: string;
-  description: string;
+  problem: string;
+  solution: string;
+  features: string[];
   techStack: string[];
-  category: string;
+  challenges: string;
+  learned: string;
   github?: string;
   live?: string;
+  image?: string;
 }
 
-export interface Experience {
-  role: string;
-  company: string;
-  description: string;
-  type: "internship" | "simulation" | "job";
+export interface BlogPost {
+  title: string;
+  excerpt: string;
+  date: string;
+  readTime: string;
+  slug: string;
+  tags: string[];
 }
 
 export interface SkillCategory {
@@ -22,102 +27,160 @@ export interface SkillCategory {
   skills: string[];
 }
 
-export interface ContactLink {
+export interface SocialLink {
   label: string;
   href: string;
   icon: string;
 }
 
-// ─── Data ────────────────────────────────────────────────────────────────
+// ─── Personal Info ───────────────────────────────────────────────
 
 export const personalInfo = {
   name: "Ankur Gupta",
-  tagline: "Data Analytics & Software Development Enthusiast",
-  intro:
-    "I build data-driven applications and scalable web solutions. Currently pursuing B.Tech in CSE (Data Science), I combine analytical thinking with hands-on development skills to create impactful digital experiences.",
+  headline: "I build web apps, data systems,\nand AI tools.",
+  description:
+    "I am a Full Stack Developer and Data Science enthusiast who enjoys building real-world projects, data-driven systems, and modern web applications.",
   email: "ankurgreaternoida@gmail.com",
   phone: "+91 8178312715",
+  location: "Greater Noida, India",
 };
 
-export const education = {
-  degree: "B.Tech CSE (Data Science)",
-  institution: "NIET",
-  cgpa: "8.73",
+export const aboutContent = {
+  intro:
+    "I'm Ankur Gupta, a B.Tech CSE (Data Science) student at NIET with a CGPA of 8.73. I'm passionate about building tools that solve real problems — from full-stack web applications to data-driven analytics systems.",
+  what_i_build:
+    "I build modern web applications using React, Next.js, and Tailwind CSS on the frontend, and Node.js, FastAPI, and MySQL on the backend. I enjoy working across the entire stack — from designing clean UIs to writing efficient database queries.",
+  interests:
+    "My interests span across AI/ML, Data Visualization, Web Development, and System Design. I'm fascinated by how data can be transformed into actionable insights, and how well-designed software can make complex information accessible.",
+  goal:
+    "My career goal is to work as a Software Engineer or Data Engineer at a product-driven company where I can build impactful systems at scale. I want to keep learning, contribute to open source, and eventually mentor other developers.",
 };
+
+// ─── Skills ──────────────────────────────────────────────────────
+
+export const skillCategories: SkillCategory[] = [
+  {
+    category: "Frontend",
+    skills: ["React", "Next.js", "Tailwind CSS", "JavaScript", "TypeScript"],
+  },
+  {
+    category: "Backend",
+    skills: ["Node.js", "Express", "FastAPI"],
+  },
+  {
+    category: "Database",
+    skills: ["MySQL", "MongoDB"],
+  },
+  {
+    category: "Data Science",
+    skills: ["Python", "Pandas", "NumPy", "Machine Learning"],
+  },
+  {
+    category: "Tools",
+    skills: ["Git", "Docker", "Linux", "Vercel"],
+  },
+];
+
+// ─── Projects (Case Study Style) ────────────────────────────────
 
 export const projects: Project[] = [
   {
     title: "Real-Time Stock Analysis Platform",
-    subtitle: "Live API-powered financial data dashboard",
-    description:
-      "A dynamic platform that displays real-time stock data and analytics using live API integrations. Features interactive charts, market trend indicators, and comprehensive data visualization dashboards for informed decision-making.",
-    techStack: ["HTML", "CSS", "JavaScript", "MySQL", "APIs"],
-    category: "Web Development",
+    problem:
+      "Stock market data is complex and difficult for individual investors to analyze manually. There was no simple tool to visualize real-time trends and make data-driven decisions quickly.",
+    solution:
+      "Built a real-time stock data visualization and analytics platform that pulls live data from financial APIs, displays interactive charts, and provides trend indicators to help users make informed decisions.",
+    features: [
+      "Real-time stock price tracking with live API integration",
+      "Interactive chart visualization with multiple timeframes",
+      "Market trend indicators and analytics dashboard",
+      "User-friendly interface for quick data exploration",
+    ],
+    techStack: ["HTML", "CSS", "JavaScript", "MySQL", "REST APIs"],
+    challenges:
+      "Handling real-time data updates efficiently without overwhelming the API rate limits, and ensuring the chart rendering remained smooth even with large datasets.",
+    learned:
+      "Learned how to work with financial APIs, handle real-time data streams, and build performant data visualization interfaces. Deepened my understanding of SQL query optimization for time-series data.",
     github: "https://github.com/Ankur0307/",
   },
   {
     title: "Bookstore Management System",
-    subtitle: "Full-featured inventory and sales tracking",
-    description:
-      "A comprehensive management system for bookstores that handles inventory tracking, billing operations, and sales analytics. Built with a focus on efficiency and ease of use for store operators.",
+    problem:
+      "Small bookstores often rely on manual record-keeping for inventory and sales, leading to errors, lost records, and inefficient billing processes.",
+    solution:
+      "Developed a comprehensive digital management system that automates inventory tracking, streamlines the billing process, and provides clear sales analytics for better business decisions.",
+    features: [
+      "Complete inventory management with CRUD operations",
+      "Automated billing and invoice generation",
+      "Sales tracking and reporting dashboard",
+      "Search and filter functionality for quick book lookup",
+    ],
     techStack: ["HTML", "CSS", "MySQL"],
-    category: "Database",
+    challenges:
+      "Designing a relational database schema that could handle complex relationships between books, customers, sales, and inventory while maintaining data integrity.",
+    learned:
+      "Gained deep understanding of relational database design, SQL joins and aggregations, and how to build data-driven applications that solve real business problems.",
     github: "https://github.com/Ankur0307/",
   },
 ];
 
-export const skillCategories: SkillCategory[] = [
+// ─── Blog Posts ──────────────────────────────────────────────────
+
+export const blogPosts: BlogPost[] = [
   {
-    category: "Languages",
-    skills: ["Python", "C++", "JavaScript"],
+    title: "How I Built My Developer Portfolio",
+    excerpt:
+      "A deep dive into the design decisions, technology stack, and architecture behind this portfolio website — from typography choices to animation philosophy.",
+    date: "2025-03-15",
+    readTime: "8 min read",
+    slug: "how-i-built-my-portfolio",
+    tags: ["Next.js", "Design", "Web Dev"],
   },
   {
-    category: "Tools & Databases",
-    skills: ["SQL", "Power BI", "Excel", "MySQL"],
+    title: "MongoDB vs MySQL: When to Use What",
+    excerpt:
+      "A practical comparison of MongoDB and MySQL based on real-world projects. Learn when to choose a relational database vs a document store.",
+    date: "2025-02-20",
+    readTime: "6 min read",
+    slug: "mongodb-vs-mysql",
+    tags: ["Database", "Backend"],
   },
   {
-    category: "Concepts & Tech",
-    skills: ["Data Visualization", "APIs", "Web Development"],
+    title: "Getting Started with Machine Learning in Python",
+    excerpt:
+      "A beginner-friendly guide to building your first ML model using Python, Pandas, and scikit-learn — with practical examples and common pitfalls.",
+    date: "2025-01-10",
+    readTime: "10 min read",
+    slug: "machine-learning-basics",
+    tags: ["Python", "ML", "Data Science"],
   },
 ];
 
-export const experiences: Experience[] = [
-  {
-    role: "Python Developer Intern",
-    company: "YBI Foundation",
-    description:
-      "Developed Python-based applications and scripts for data processing and analysis. Collaborated with a team to build automation tools and improve development workflows.",
-    type: "internship",
-  },
-  {
-    role: "Data Analytics Simulation",
-    company: "Deloitte (Virtual)",
-    description:
-      "Completed a comprehensive data analytics simulation covering data cleaning, analysis, visualization, and deriving actionable business insights from complex datasets.",
-    type: "simulation",
-  },
-];
+// ─── Social Links ────────────────────────────────────────────────
 
-export const contactLinks: ContactLink[] = [
-  { label: "Email", href: "mailto:ankurgreaternoida@gmail.com", icon: "Mail" },
-  { label: "Phone", href: "tel:+918178312715", icon: "Phone" },
+export const socialLinks: SocialLink[] = [
   { label: "GitHub", href: "https://github.com/Ankur0307/", icon: "Github" },
-  { label: "LeetCode", href: "https://leetcode.com/u/Ankuroo7/", icon: "Code2" },
-  { label: "LinkedIn", href: "https://www.linkedin.com/in/ankurgupta2882/", icon: "Linkedin" },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/ankurgupta2882/",
+    icon: "Linkedin",
+  },
+  {
+    label: "LeetCode",
+    href: "https://leetcode.com/u/Ankuroo7/",
+    icon: "Code2",
+  },
+  {
+    label: "Email",
+    href: "mailto:ankurgreaternoida@gmail.com",
+    icon: "Mail",
+  },
 ];
 
 export const navLinks = [
+  { label: "Home", href: "#" },
   { label: "About", href: "#about" },
   { label: "Projects", href: "#projects" },
-  { label: "Skills", href: "#skills" },
-  { label: "Experience", href: "#experience" },
+  { label: "Blog", href: "#blog" },
   { label: "Contact", href: "#contact" },
-];
-
-export const categories = [
-  { label: "All", icon: "Layers" },
-  { label: "Web Development", icon: "Globe" },
-  { label: "Database", icon: "Database" },
-  { label: "Data Analytics", icon: "BarChart3" },
-  { label: "Python", icon: "Terminal" },
 ];
