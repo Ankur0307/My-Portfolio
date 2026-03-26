@@ -11,6 +11,7 @@ export interface Project {
   github?: string;
   live?: string;
   image?: string;
+  category?: string;
 }
 
 export interface BlogPost {

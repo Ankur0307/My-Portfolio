@@ -19,14 +19,14 @@ export default function Navbar() {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-background/80 backdrop-blur-md border-b border-border"
-          : "bg-transparent"
+          ? "bg-[#0f172a]/70 backdrop-blur-md border-b border-white/10 py-3"
+          : "bg-transparent py-5"
       }`}
     >
-      <div className="section-container flex items-center justify-between h-16">
+      <div className="max-w-5xl mx-auto px-6 flex items-center justify-between">
         {/* Logo */}
-        <a href="#" className="font-heading text-lg font-semibold text-foreground hover:text-accent transition-colors">
-          ankur.
+        <a href="#" className="font-heading text-lg font-bold text-white hover:text-purple-400 transition-colors">
+          ankur<span className="text-purple-500">.</span>
         </a>
 
         {/* Desktop links */}
@@ -35,16 +35,17 @@ export default function Navbar() {
             <a
               key={link.href}
               href={link.href}
-              className="text-sm text-foreground-secondary hover:text-foreground link-underline transition-colors duration-200"
+              className="relative text-sm font-medium text-gray-400 hover:text-white transition-colors duration-300 group"
             >
               {link.label}
+              <span className="absolute left-0 bottom-[-2px] w-0 h-[1.5px] bg-purple-500 transition-all duration-300 group-hover:w-full" />
             </a>
           ))}
           <a
             href="https://github.com/Ankur0307/"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-foreground-secondary hover:text-foreground transition-colors"
+            className="text-gray-400 hover:text-white transition-colors"
             aria-label="GitHub"
           >
             <Github size={18} />
@@ -54,7 +55,7 @@ export default function Navbar() {
         {/* Mobile toggle */}
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
-          className="md:hidden p-2 text-foreground-secondary hover:text-foreground"
+          className="md:hidden p-2 text-gray-400 hover:text-white"
           aria-label="Toggle menu"
         >
           {mobileOpen ? <X size={20} /> : <Menu size={20} />}
@@ -69,15 +70,15 @@ export default function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.2 }}
-            className="md:hidden bg-background-secondary border-b border-border"
+            className="md:hidden bg-[#0f172a]/95 backdrop-blur-md border-b border-white/10"
           >
-            <div className="section-container py-4 flex flex-col gap-3">
+            <div className="max-w-5xl mx-auto px-6 py-4 flex flex-col gap-4">
               {navLinks.map((link) => (
                 <a
                   key={link.href}
                   href={link.href}
                   onClick={() => setMobileOpen(false)}
-                  className="text-sm text-foreground-secondary hover:text-foreground py-1 transition-colors"
+                  className="text-sm font-medium text-gray-400 hover:text-white py-1 transition-colors"
                 >
                   {link.label}
                 </a>

@@ -3,63 +3,82 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Github, Linkedin, Mail, Code2, type LucideIcon } from "lucide-react";
 import { personalInfo, socialLinks } from "@/lib/data";
+import dynamic from "next/dynamic";
+
+// Lazy load 3D to keep performance fast
+const Hero3D = dynamic(() => import("./Hero3D"), { ssr: false });
 
 const iconMap: Record<string, LucideIcon> = {
   Github, Linkedin, Mail, Code2,
 };
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: { staggerChildren: 0.1, delayChildren: 0.1 },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+};
+
 export default function Hero() {
   return (
-    <section className="section-container pt-32 pb-24 md:pt-40 md:pb-32">
-      <div className="text-container">
-        {/* Small label */}
+    <section className="relative overflow-hidden section-container pt-32 pb-24 md:pt-40 md:pb-32 min-h-screen flex items-center">
+      {/* Subtle radial glow background */}
+      <div className="absolute top-[-200px] left-1/2 -translate-x-1/2 w-[600px] h-[600px] md:w-[800px] md:h-[800px] bg-purple-600/20 blur-[120px] rounded-full pointer-events-none -z-10" />
+
+      {/* 3D Element on right */}
+      <div className="hidden lg:block absolute right-0 top-1/2 -translate-y-1/2 w-1/2 h-full z-0 pointer-events-none">
+        <Hero3D />
+      </div>
+
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        animate="show"
+        className="text-container relative z-10 w-full lg:w-3/5"
+      >
         <motion.p
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, delay: 0.1 }}
-          className="text-accent text-sm font-medium mb-6 font-mono"
+          variants={itemVariants}
+          className="text-purple-400 text-sm md:text-base font-medium mb-6 font-mono"
         >
           Hi, my name is
         </motion.p>
 
-        {/* Main heading */}
         <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, delay: 0.2 }}
+          variants={itemVariants}
           className="font-heading text-4xl sm:text-5xl md:text-6xl font-bold text-white leading-tight mb-6"
           style={{ whiteSpace: "pre-line" }}
         >
           {personalInfo.headline}
         </motion.h1>
 
-        {/* Description */}
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, delay: 0.3 }}
-          className="text-lg text-foreground-secondary leading-relaxed mb-10 max-w-xl"
+          variants={itemVariants}
+          className="text-lg md:text-xl text-gray-300 leading-relaxed mb-10 max-w-xl"
         >
+          {/* We replace the text slightly to add highlight if wanted, or just render it */}
           {personalInfo.description}
         </motion.p>
 
-        {/* Buttons */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, delay: 0.4 }}
+          variants={itemVariants}
           className="flex flex-wrap items-center gap-4 mb-12"
         >
           <a
             href="#projects"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-accent hover:bg-accent-hover text-white text-sm font-medium rounded-lg transition-colors duration-200"
+            className="group inline-flex items-center gap-2 px-6 py-3 bg-purple-600 hover:bg-purple-500 text-white text-sm font-medium rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-[0_0_25px_rgba(124,58,237,0.4)]"
           >
             View Projects
-            <ArrowRight size={16} />
+            <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
           </a>
           <a
             href="#contact"
-            className="inline-flex items-center gap-2 px-6 py-3 border border-border-light hover:bg-background-card text-foreground text-sm font-medium rounded-lg transition-colors duration-200"
+            className="inline-flex items-center gap-2 px-6 py-3 border border-white/10 hover:bg-white/5 text-gray-300 hover:text-white text-sm font-medium rounded-lg transition-all duration-300 hover:scale-105"
           >
             Contact Me
           </a>
@@ -67,10 +86,8 @@ export default function Hero() {
 
         {/* Social links */}
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.4, delay: 0.5 }}
-          className="flex items-center gap-5"
+          variants={itemVariants}
+          className="flex items-center gap-6"
         >
           {socialLinks.map((link) => {
             const Icon = iconMap[link.icon];
@@ -81,15 +98,15 @@ export default function Hero() {
                 href={link.href}
                 target={link.href.startsWith("http") ? "_blank" : undefined}
                 rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                className="text-foreground-muted hover:text-accent transition-colors duration-200"
+                className="text-gray-400 hover:text-purple-400 transition-colors duration-200 hover:-translate-y-1 transform inline-block"
                 aria-label={link.label}
               >
-                <Icon size={20} />
+                <Icon size={22} />
               </a>
             );
           })}
         </motion.div>
-      </div>
+      </motion.div>
     </section>
   );
 }
