@@ -36,13 +36,13 @@ export default function Hero() {
       <RainbowArch />
       <WavyHills />
 
-      {/* 3D Person sitting on hill */}
-      <div className="hidden lg:block absolute right-[5%] bottom-[80px] z-10 scale-[1.2] origin-bottom">
+      {/* 3D Person sitting on hill - Centered focal point */}
+      <div className="hidden lg:block absolute right-[8%] bottom-[120px] z-10 origin-bottom">
         <Avatar3D type="full" />
       </div>
 
-      {/* 3D Glassy Torus background accent */}
-      <div className="hidden lg:block absolute right-[-5%] top-1/2 -translate-y-1/2 w-1/2 h-full z-0 pointer-events-none opacity-20">
+      {/* 3D Glassy Torus background accent - More subtle */}
+      <div className="hidden lg:block absolute right-[-5%] top-[20%] w-[600px] h-[600px] z-0 pointer-events-none opacity-[0.15]">
         <Hero3D />
       </div>
 
