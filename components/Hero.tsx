@@ -4,6 +4,9 @@ import { motion } from "framer-motion";
 import { ArrowRight, Github, Linkedin, Mail, Code2, type LucideIcon } from "lucide-react";
 import { personalInfo, socialLinks } from "@/lib/data";
 import dynamic from "next/dynamic";
+import WavyHills from "./WavyHills";
+import RainbowArch from "./RainbowArch";
+import Avatar3D from "./Avatar3D";
 
 // Lazy load 3D to keep performance fast
 const Hero3D = dynamic(() => import("./Hero3D"), { ssr: false });
@@ -27,12 +30,19 @@ const itemVariants = {
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden section-container pt-32 pb-24 md:pt-40 md:pb-32 min-h-screen flex items-center">
-      {/* Subtle radial glow background */}
-      <div className="absolute top-[-200px] left-1/2 -translate-x-1/2 w-[600px] h-[600px] md:w-[800px] md:h-[800px] bg-purple-600/20 blur-[120px] rounded-full pointer-events-none -z-10" />
+    <section className="relative overflow-hidden section-container pt-32 pb-48 md:pt-40 md:pb-64 min-h-screen flex items-center">
+      {/* Background elements */}
+      <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-transparent pointer-events-none -z-10" />
+      <RainbowArch />
+      <WavyHills />
 
-      {/* 3D Element on right */}
-      <div className="hidden lg:block absolute right-0 top-1/2 -translate-y-1/2 w-1/2 h-full z-0 pointer-events-none">
+      {/* 3D Person sitting on hill */}
+      <div className="hidden lg:block absolute right-[5%] bottom-[80px] z-10 scale-[1.2] origin-bottom">
+        <Avatar3D type="full" />
+      </div>
+
+      {/* 3D Glassy Torus background accent */}
+      <div className="hidden lg:block absolute right-[-5%] top-1/2 -translate-y-1/2 w-1/2 h-full z-0 pointer-events-none opacity-20">
         <Hero3D />
       </div>
 
@@ -46,7 +56,7 @@ export default function Hero() {
           variants={itemVariants}
           className="text-purple-400 text-sm md:text-base font-medium mb-6 font-mono"
         >
-          Hi, my name is
+          Hi, my name is Ankur
         </motion.p>
 
         <motion.h1
