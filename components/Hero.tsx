@@ -3,13 +3,9 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Github, Linkedin, Mail, Code2, type LucideIcon } from "lucide-react";
 import { personalInfo, socialLinks } from "@/lib/data";
-import dynamic from "next/dynamic";
 import WavyHills from "./WavyHills";
 import RainbowArch from "./RainbowArch";
 import Avatar3D from "./Avatar3D";
-
-// Lazy load 3D to keep performance fast
-const Hero3D = dynamic(() => import("./Hero3D"), { ssr: false });
 
 const iconMap: Record<string, LucideIcon> = {
   Github, Linkedin, Mail, Code2,
@@ -36,14 +32,9 @@ export default function Hero() {
       <RainbowArch />
       <WavyHills />
 
-      {/* 3D Person sitting on hill - Centered focal point */}
-      <div className="hidden lg:block absolute right-[8%] bottom-[120px] z-10 origin-bottom">
+      {/* 3D Clay Character - Centered right focal point */}
+      <div className="hidden lg:block absolute right-[3%] bottom-[100px] z-10 origin-bottom">
         <Avatar3D type="full" />
-      </div>
-
-      {/* 3D Glassy Torus background accent - More subtle */}
-      <div className="hidden lg:block absolute right-[-5%] top-[20%] w-[600px] h-[600px] z-0 pointer-events-none opacity-[0.15]">
-        <Hero3D />
       </div>
 
       <motion.div
@@ -71,7 +62,6 @@ export default function Hero() {
           variants={itemVariants}
           className="text-lg md:text-xl text-gray-300 leading-relaxed mb-10 max-w-xl"
         >
-          {/* We replace the text slightly to add highlight if wanted, or just render it */}
           {personalInfo.description}
         </motion.p>
 
